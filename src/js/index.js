@@ -13,9 +13,13 @@ const gallery = new SimpleLightbox('.gallery a');
 const pixabayAPI = new PixabayAPI();
 
 
+
+
 // const { height: cardHeight } = document
 //   .querySelector(".gallery")
 //   .firstElementChild.getBoundingClientRect();
+
+console.log({ height: cardHeight });
 
 // window.scrollBy({
 //   top: cardHeight * 2,
