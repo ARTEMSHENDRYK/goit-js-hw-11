@@ -20,6 +20,5 @@ export default function galleryMarkup(galleryItems) {
           </div>
         </div>
       </a>
-    `, ''
-  );
+    `, '');
 }
