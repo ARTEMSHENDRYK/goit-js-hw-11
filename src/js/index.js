@@ -2,9 +2,9 @@ import '../css/styles.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import InfiniteScroll from 'infinite-scroll';
 import PixabayAPI from './PixabayAPI';
 import galleryMarkup from './GalleryMarkup';
-import InfiniteScroll from 'infinite-scroll';
 
 const searchFormRef = document.querySelector('.search-form');
 const loadMoreRef = document.querySelector('.load-more');
@@ -38,9 +38,7 @@ async function onSearch(e) {
   }
 
   checkHits(response.hits.length, response.totalHits);
-
-  galleryRef.innerHTML = galleryMarkup(response.hits);
-  smoothScroll();
+  galleryRef.innerHTML = await galleryMarkup(response.hits);
   gallery.refresh(); 
 }
 
@@ -48,8 +46,7 @@ async function onLoadMore(e) {
   const response = await pixabayAPI.fetchHits();
   
   checkHits(response.hits.length, response.totalHits);
-
-  galleryRef.insertAdjacentHTML("beforeend", galleryMarkup(response.hits));
+  galleryRef.insertAdjacentHTML("beforeend", await galleryMarkup(response.hits));
   smoothScroll();
   gallery.refresh();
 }
@@ -66,9 +63,8 @@ function checkHits(hitsLength, totalHits) {
 
 function smoothScroll() {
   const { height: cardHeight } = document.querySelector(".gallery").firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * pixabayAPI.perPage * 1.25,
-    behavior: "smooth", 
-  });
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: "smooth",
+    });
 }
