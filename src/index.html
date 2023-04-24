@@ -7,8 +7,13 @@
     <title>Homework 10</title>
   </head>
   <body>
-    <input type="text" id="search-box" />
-
+    <form class="search-form" id="search-form">
+      <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+      <button type="submit">Search</button>
+    </form>
+    <div class="gallery">
+    </div>
+    <button type="button" class="load-more">Load more</button>
     <script src="js/index.js" type="module"></script>
   </body>
 </html>
