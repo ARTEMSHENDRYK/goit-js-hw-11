@@ -12,20 +12,6 @@ const galleryRef = document.querySelector('.gallery');
 const gallery = new SimpleLightbox('.gallery a');
 const pixabayAPI = new PixabayAPI();
 
-
-
-
-// const { height: cardHeight } = document
-//   .querySelector(".gallery")
-//   .firstElementChild.getBoundingClientRect();
-
-console.log({ height: cardHeight });
-
-// window.scrollBy({
-//   top: cardHeight * 2,
-//   behavior: "smooth",
-// });
-
 loadMoreRef.hidden = true;
 
 searchFormRef.addEventListener('submit', onSearch);
@@ -54,6 +40,7 @@ async function onSearch(e) {
   checkHits(response.hits.length, response.totalHits);
 
   galleryRef.innerHTML = galleryMarkup(response.hits);
+  smoothScroll();
   gallery.refresh(); 
 }
 
@@ -63,6 +50,7 @@ async function onLoadMore(e) {
   checkHits(response.hits.length, response.totalHits);
 
   galleryRef.insertAdjacentHTML("beforeend", galleryMarkup(response.hits));
+  smoothScroll();
   gallery.refresh();
 }
 
@@ -74,4 +62,13 @@ function checkHits(hitsLength, totalHits) {
     Notify.info(`We're sorry, but you've reached the end of search results.`);
     loadMoreRef.hidden = true;
   }
+}
+
+function smoothScroll() {
+  const { height: cardHeight } = document.querySelector(".gallery").firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * pixabayAPI.perPage * 1.25,
+    behavior: "smooth", 
+  });
 }
