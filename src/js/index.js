@@ -33,6 +33,7 @@ async function onSearch(e) {
   if (response.totalHits === 0) {
     Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     loadMoreRef.hidden = true;
+    loadMoreRef.style.display = 'none';
     galleryRef.innerHTML = '';  
     return;
   }
@@ -55,9 +56,11 @@ function checkHits(hitsLength, totalHits) {
   if (hitsLength === pixabayAPI.perPage) {
     Notify.success(`Hooray! We found ${totalHits} images.`);
     loadMoreRef.hidden = false;
+    loadMoreRef.style.display = 'block';
   } else {
     Notify.info(`We're sorry, but you've reached the end of search results.`);
     loadMoreRef.hidden = true;
+    loadMoreRef.style.display = 'none';
   }
 }
 
