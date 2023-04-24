@@ -4,6 +4,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import PixabayAPI from './PixabayAPI';
 import galleryMarkup from './GalleryMarkup';
+import InfiniteScroll from 'infinite-scroll';
 
 const searchFormRef = document.querySelector('.search-form');
 const loadMoreRef = document.querySelector('.load-more');
