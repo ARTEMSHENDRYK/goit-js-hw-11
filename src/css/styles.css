@@ -74,7 +74,8 @@ body {
 }
 
 .link:hover {
-  cursor: zoom-in;
+  cursor: zoom-in  ;
+  transform: scale(1.05);
 }
 
 .photo-card {
@@ -87,10 +88,6 @@ body {
   width: 100%;
   object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
-}
-
-.image:hover {
-  transform: scale(1.03);
 }
 
 .info {
